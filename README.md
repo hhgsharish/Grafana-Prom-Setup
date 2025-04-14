@@ -2,8 +2,7 @@
 
 **Setting Up Grafana and Prometheus for Kubernetes Monitoring on AWS with NodePort**
 
-I'll guide you through setting up Prometheus and Grafana using NodePort instead of LoadBalancer for your AWS Kubernetes cluster. 
-This is a good choice when you want to avoid the additional cost of an AWS load balancer.
+This guide will help you through setting up Prometheus and Grafana using NodePort for your AWS Kubernetes cluster. 
 
 **Prerequisites**
 
@@ -55,9 +54,11 @@ Sets Prometheus, Grafana, and AlertManager to use NodePort service type
 
 Assigns specific node ports for easy access:
 
-Prometheus: 30090
-Grafana: 30080
-AlertManager: 30093
+**Prometheus**: 30090
+
+**Grafana**: 30080
+
+**AlertManager**: 30093
 
 
 Sets a default admin password for Grafana
@@ -86,10 +87,12 @@ Password: admin123 (the one you set during installation)
 **Once logged into Grafana:**
 
 Click on "Dashboards" in the left menu
+
 Select "Browse"
+
 Explore the "General" folder to find default Kubernetes dashboards
 
-The kube-prometheus-stack includes several pre-configured dashboards for monitoring:
+**The kube-prometheus-stack includes several pre-configured dashboards for monitoring:**
 
 Kubernetes cluster overview
 
@@ -111,17 +114,17 @@ Similarly, you can access:
 
 Understanding What We've Deployed
 
-Prometheus: The monitoring system and time series database that collects metrics
+**Prometheus**: The monitoring system and time series database that collects metrics
 
-Grafana: The visualization tool that creates dashboards from the data Prometheus collects
+**Grafana**: The visualization tool that creates dashboards from the data Prometheus collects
 
-AlertManager: Handles alerts from Prometheus
+**AlertManager**: Handles alerts from Prometheus
 
-Node Exporter: Collects hardware and OS metrics from your Kubernetes nodes
+**Node Exporter**: Collects hardware and OS metrics from your Kubernetes nodes
 
-kube-state-metrics: Generates metrics about the state of Kubernetes objects
+**kube-state-metrics**: Generates metrics about the state of Kubernetes objects
 
-Security Considerations
+**Security Considerations**
 Since we're using NodePort, the services are exposed on all nodes in your cluster:
 
 Ensure your AWS security groups allow traffic to the specified node ports (30080, 30090, 30093)
@@ -130,6 +133,6 @@ For production environments, consider setting up an ingress controller with TLS 
 
 Change the default Grafana password immediately after first login
 
-Additional Notes
+**Additional Notes**
 
 Make sure the NodePort range in your Kubernetes cluster includes the ports we've specified (default range is 30000-32767)
