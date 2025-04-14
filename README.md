@@ -92,8 +92,11 @@ Explore the "General" folder to find default Kubernetes dashboards
 The kube-prometheus-stack includes several pre-configured dashboards for monitoring:
 
 Kubernetes cluster overview
+
 Node metrics
+
 Pod resources
+
 And many more
 
 You can get the public IP of your AWS nodes from the EC2 console or by running:
