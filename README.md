@@ -93,16 +93,22 @@ Similarly, you can access:
 Understanding What We've Deployed
 
 Prometheus: The monitoring system and time series database that collects metrics
+
 Grafana: The visualization tool that creates dashboards from the data Prometheus collects
+
 AlertManager: Handles alerts from Prometheus
+
 Node Exporter: Collects hardware and OS metrics from your Kubernetes nodes
+
 kube-state-metrics: Generates metrics about the state of Kubernetes objects
 
 Security Considerations
 Since we're using NodePort, the services are exposed on all nodes in your cluster:
 
 Ensure your AWS security groups allow traffic to the specified node ports (30080, 30090, 30093)
+
 For production environments, consider setting up an ingress controller with TLS or using a reverse proxy
+
 Change the default Grafana password immediately after first login
 
 Additional Notes
