@@ -61,28 +61,34 @@ Sets a default admin password for Grafana
 Uses a recent stable version 52.1.0
 
 **Step 5: Verify the Installation**
+
     kubectl get pods -n monitoring
+    
 This checks that all the pods are running properly. You should see pods for Prometheus, Grafana, and related components.
 
 **Step 6: Check the Services**
+
     kubectl get svc -n monitoring
+    
 Look for the services with type NodePort. You should see the ports we configured for each service.
 
 **Step 7: Access Grafana Dashboard**
 To access Grafana, you'll need the public IP or DNS name of any of your Kubernetes nodes and the NodePort we configured (30080).
-Access URL: http://<NODE-PUBLIC-IP>:30080
+
+    Access URL: http://<NODE-PUBLIC-IP>:30080
 
 Username: admin
 Password: admin123 (the one you set during installation)
 
 You can get the public IP of your AWS nodes from the EC2 console or by running:
+
     kubectl get nodes -o wide
     
 **Step 8: Access Prometheus and AlertManager (if needed)**
 Similarly, you can access:
 
-Prometheus: http://<NODE-PUBLIC-IP>:30090
-AlertManager: http://<NODE-PUBLIC-IP>:30093
+    Prometheus: http://<NODE-PUBLIC-IP>:30090
+    AlertManager: http://<NODE-PUBLIC-IP>:30093
 
 Understanding What We've Deployed
 
