@@ -11,23 +11,26 @@ An AWS Kubernetes cluster with 1 master and 2 worker nodes (T2.Medium)
 kubectl configured to access your cluster
 Helm package manager installed (we'll install this if needed)
 
-Step 1: Install Helm (if not already installed)
+**Step 1: Install Helm (if not already installed)**
 
     curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
     
 This command downloads and installs Helm 3, which is a package manager for Kubernetes that simplifies deploying applications.
-Step 2: Add the Prometheus Community Helm Repository
+
+**Step 2: Add the Prometheus Community Helm Repository**
 
     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
     helm repo update
     
 This adds the official Prometheus community repository to Helm and updates the repository information, giving us access to the Prometheus and related charts.
-Step 3: Create a Namespace for Monitoring
+
+**Step 3: Create a Namespace for Monitoring**
 
     kubectl create namespace monitoring
     
 Creating a dedicated namespace helps organize resources and makes managing permissions easier.
-Step 4: Install Prometheus using Helm with NodePort
+
+**Step 4: Install Prometheus using Helm with NodePort**
 
 
     helm install prometheus prometheus-community/kube-prometheus-stack \
@@ -42,8 +45,8 @@ Step 4: Install Prometheus using Helm with NodePort
       --version 52.1.0
 
     
-**This command:
-**
+**This command**
+
 Installs the kube-prometheus-stack
 Places all components in the monitoring namespace
 Sets Prometheus, Grafana, and AlertManager to use NodePort service type
@@ -57,13 +60,15 @@ AlertManager: 30093
 Sets a default admin password for Grafana
 Uses a recent stable version 52.1.0
 
-Step 5: Verify the Installation
+**Step 5: Verify the Installation**
     kubectl get pods -n monitoring
 This checks that all the pods are running properly. You should see pods for Prometheus, Grafana, and related components.
-Step 6: Check the Services
+
+**Step 6: Check the Services**
     kubectl get svc -n monitoring
 Look for the services with type NodePort. You should see the ports we configured for each service.
-Step 7: Access Grafana Dashboard
+
+**Step 7: Access Grafana Dashboard**
 To access Grafana, you'll need the public IP or DNS name of any of your Kubernetes nodes and the NodePort we configured (30080).
 Access URL: http://<NODE-PUBLIC-IP>:30080
 
@@ -72,7 +77,8 @@ Password: admin123 (the one you set during installation)
 
 You can get the public IP of your AWS nodes from the EC2 console or by running:
     kubectl get nodes -o wide
-Step 8: Access Prometheus and AlertManager (if needed)
+    
+**Step 8: Access Prometheus and AlertManager (if needed)**
 Similarly, you can access:
 
 Prometheus: http://<NODE-PUBLIC-IP>:30090
