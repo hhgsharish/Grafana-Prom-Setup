@@ -48,8 +48,11 @@ Creating a dedicated namespace helps organize resources and makes managing permi
 **This command**
 
 Installs the kube-prometheus-stack
+
 Places all components in the monitoring namespace
+
 Sets Prometheus, Grafana, and AlertManager to use NodePort service type
+
 Assigns specific node ports for easy access:
 
 Prometheus: 30090
@@ -79,6 +82,19 @@ To access Grafana, you'll need the public IP or DNS name of any of your Kubernet
 
 Username: admin
 Password: admin123 (the one you set during installation)
+
+**Once logged into Grafana:**
+
+Click on "Dashboards" in the left menu
+Select "Browse"
+Explore the "General" folder to find default Kubernetes dashboards
+
+The kube-prometheus-stack includes several pre-configured dashboards for monitoring:
+
+Kubernetes cluster overview
+Node metrics
+Pod resources
+And many more
 
 You can get the public IP of your AWS nodes from the EC2 console or by running:
 
